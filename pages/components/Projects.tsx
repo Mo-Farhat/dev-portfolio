@@ -1,56 +1,139 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import config from "../index.json";
 import Image from "next/image";
 
 const Projects = () => {
   const projects = config.projects;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0, scale: 0.9 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <div id={projects.title} className="px-8 md:px-16 md:px-32 pb-16 bg-white">
-      <h1 className="pt-12 uppercase font-bold text-center text-black text-bold text-4xl">{projects.title}</h1>
-      <div className="projects__menu">
-        <ul>
-          {projects.projects.map((item) => (
-            <li key={item.title} className="flex flex-col lg:flex-row mt-12">
-              <div className="lg:w-1/3">
-                <h2 className="text-2xl">
-                  {item.title}
-                </h2>
-                <p className="mt-6">
-                  {item.description}
-                </p>
-                <div className="flex mt-4">
-                  <div className="text-md text-center font-semibold p-0.5 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
-                    <a href={item.url} target="_blank" rel="noreferrer">
-                      <div className="bg-white">
-                        <span className="block py-0.5 px-2 bg-white bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-                          See Project
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                  <div className="bg-white ml-2 font-semibold">
-                    <a href={item.github} target="_blank" rel="noreferrer">                      
-                      <span className="block py-1 px-2 bg-white bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-                        Source Code
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="lg:ml-12">
+    <section id={projects.title} className="py-24 bg-gray-50" ref={ref}>
+      <div className="max-w-6xl mx-auto px-8 lg:px-16">
+        <motion.div 
+          className="text-center mb-16"
+          variants={titleVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2 className="text-5xl md:text-6xl font-light text-black leading-tight">
+            {projects.title}
+          </h2>
+        </motion.div>
+        
+        <motion.div 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {projects.projects.map((item, index) => (
+            <motion.div 
+              key={item.title} 
+              className="group bg-white overflow-hidden hover:shadow-xl transition-all duration-500"
+              variants={itemVariants}
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div 
+                className="relative overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
                 <Image 
                   src={item.image} 
                   alt="project image" 
-                  className="mt-6 md:mt-12 lg:mt-0 w-full shadow-lg" 
-                  width={700} 
-                  height={350}
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" 
+                  width={400} 
+                  height={256}
                 />
-              </div>
-            </li>
+                <motion.div 
+                  className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"
+                  whileHover={{ backgroundColor: "rgba(0,0,0,0.2)" }}
+                ></motion.div>
+              </motion.div>
+              <motion.div 
+                className="p-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+              >
+                <h3 className="text-2xl font-light text-black mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {item.description}
+                </p>
+                <motion.div 
+                  className="flex space-x-4"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+                >
+                  <motion.a 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-black border-b border-black hover:border-transparent transition-all duration-300"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Project
+                  </motion.a>
+                  <motion.a 
+                    href={item.github} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-gray-600 border-b border-gray-300 hover:border-black hover:text-black transition-all duration-300"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Source Code
+                  </motion.a>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           ))}
-        </ul>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

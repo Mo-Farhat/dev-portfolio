@@ -2,61 +2,98 @@
   "navigation": [
 		{
 			"title": "About",
-			"url": "http://www.example.com/about"
+			"url": "#About"
+		},
+		{
+			"title": "Experience",
+			"url": "#Experience"
 		},
 		{
 			"title": "Projects",
-			"url": "http://www.example.com/portfolio"
+			"url": "#Projects"
 		},
 		{
 			"title": "Contact",
-			"url": "http://www.example.com/contact"
+			"url": "#Contact"
 		}
 	],
   "hero": {
-    "name": "Your Name",
-    "subtitle": "I'm the Unknown Developer."
+    "name": "Mohamed Farhat",
+    "subtitle": "Full-stack Software Engineer specializing in web and mobile applications."
   },
   "about": {
     "title": "About me",
-    "image": "/placeholder.png",
-    "primary": "This is where you can describe about yourself. The more you describe about yourself, the more chances you have!",
-    "secondary": "Extra Information about you! like hobbies and your goals."
+    "image": "/farhat-2.png",
+    "primary": "I’m a full stack software engineer who enjoys building clean, fast, and useful digital products. I work across web and mobile, using Next.js, Tailwind, Flutter, React Native and Ruby on Rails.",
+    "secondary": "I like turning ideas into polished experiences, collaborating with teams, and keeping codebases simple and scalable. Always curious, always learning, just trying to build things that work well and feel right."
   },
+  "experience": [
+    {
+      "company": "Adwello",
+      "position": "Associate Software Engineer",
+      "duration": "July 2025 - Present",
+      "location": "Finland, Remote",
+      "responsibilities": [
+        "Contributed to full-stack development for internal management dashboards, tutoring platforms, and client-facing gameshow/trivia platforms, focusing on responsive, clean front-end implementation using Next.js, Tailwind CSS, React Native, and Axios.",
+        "Implemented SEO best practices and created scroll-triggered animations for landing pages using Next.js, GSAP, and Framer Motion.",
+        "Collaborated on backend development using Express.js and Prisma, integrating APIs, handling server-side logic, and managing databases for scalable solutions.",
+        "Supported DevOps and project management for internal and client platforms, leveraging GCP and Digital Ocean, breaking down tasks, and understanding client requirements.",
+        "Participated in client meetings, PRDs, and minor demos, translating feedback into actionable frontend and backend improvements.",
+        "Optimized deployments, performance, and SEO across projects, contributing to cleaner codebases and improved client satisfaction.",
+        "Worked in small, agile teams (2–3 members), practicing feature-branch Git workflows and code reviews."
+      ],
+      "technologies": ["Next.js", "Tailwind CSS", "React Native", "Express.js", "Prisma", "GSAP", "Framer Motion", "GCP", "Digital Ocean", "Axios", "GitHub/Git"]
+    },
+    {
+      "company": "Bootyard Technologies",
+      "position": "Software Developer Intern",
+      "duration": "Feb 2025 - July 2025",
+      "location": "Philippines, Remote",
+      "responsibilities": [
+        "Contributed to internal products and client projects by building responsive Next.js frontend interfaces using Tailwind CSS/HeroUI Components and Figma design assets.",
+        "Developed SEO-focused features for a Ruby on Rails–based keyword analysis tool by integrating APIs like Ahrefs and ScreenshotOne to retrieve and visualize SERP data.",
+        "Collaborated on bug fixes and small features within Ruby on Rails and PostgreSQL backends, gaining exposure to full-stack workflows.",
+        "Followed modern Git practices using Bitbucket – feature branches, documentation on every PR, and conflict resolution via code reviews.",
+        "Worked in a fast-paced Agile environment with daily task tracking on Lark and Basecamp, under mentorship from a senior developer.",
+        "Reiterated on UI/UX implementations based on client feedback, improving delivery speed and reducing revision cycles."
+      ],
+      "technologies": ["Next.js", "Tailwind CSS", "Ruby on Rails", "PostgreSQL", "Figma", "Bitbucket", "Lark", "Basecamp", "HeroUI"]
+    }
+  ],
   "projects": {
     "title": "Projects",
     "projects": [
       {
-        "title": "Project 1",
-        "description": "Describe the project being very specific, you can use the Twitter standard: no more than 280 characters: complement the information: the skills learned or reinforced in its realization and how you faced it, prove to be proactive in the search for solutions.",
-        "url": "http://www.example.com/project1",
-        "github": "http://www.example.com/github",
+        "title": "Venturely.ai",
+        "description": "A platform for startups to pitch ideas to investors using Next.js and Sanity CMS, with error tracking via Sentry. Implemented user authentication with Next-Auth using GitHub as the authentication provider and reduced API latency by 20% through query optimization and caching.",
+        "url": "https://venturely-ai.vercel.app/",
+        "github": "https://github.com/Mo-Farhat/venturely-ai",
         "image": "/placeholder-700x350.png"
       },
       {
-				"title": "Project 2",
-				"description": "Demonstrate in this description the skills of a programmer: such as having commitment, having perseverance and accepting alternative solutions. Remember that being a portfolio you are not selling the project, you are selling yourself, it reflects the resources used: Frameworks, libraries, platforms, etc.",
-				"url": "http://www.example.com/project2",
-        "github": "http://www.example.com/github",
-				"image": "/placeholder-700x350.png"
-			},
+        "title": "Oyo Eats",
+        "description": "A custom delivery service platform connecting local restaurants with delivery operations. Built and deployed a mobile-first delivery app using Flutter and Firebase, implementing role-based authentication and real-time order tracking with Google Maps Distance Matrix API integration.",
+        "url": "https://oyoeats.lk/",
+        "github": "https://github.com/Mo-Farhat/oyo-eats",
+        "image": "/placeholder-700x350.png"
+      },
       {
-				"title": "Project 3",
-				"description": "If the project was collaborative, reflect it in this description, that will demonstrate communication and/or leadership skills. Additionally, if you made use of the mastery of a second language, it will reflect on you professionalism.",
-				"url": "http://www.example.com/project3",
-        "github": "http://www.example.com/github",
-				"image": "/placeholder-700x350.png"
-			}
+        "title": "Tomato Vibe",
+        "description": "A web-based educational game designed to enhance math skills through engaging tomato-themed challenges. Features real-time feedback, leaderboard system, and external APIs for random math questions, fostering competition and enhancing user engagement.",
+        "url": "https://github.com/Mo-Farhat/TomatoVibe",
+        "github": "https://github.com/Mo-Farhat/TomatoVibe",
+        "image": "/placeholder-700x350.png"
+      }
     ]
   },
   "contact": {
     "title": "Contact",
-    "description": "This is where you can describe about your contact. The more you describe about your contact, the more chances you have!",
-    "formId": "your-form-id"
+    "description": "Let's work together! I'm available for freelance projects and full-time opportunities. Feel free to reach out to discuss your next project.",
+    "formId": "mdkpokre"
   },
   "footer": {
-		"linkedin": "",
-		"twitter": "",
-		"github": ""
+		"linkedin": "https://linkedin.com/in/mfmfarhat",
+		
+		"github": "https://github.com/Mo-Farhat"
 	}
 }
