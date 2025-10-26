@@ -31,15 +31,28 @@ const About = () => {
               <p>{about.primary}</p>
               <p>{about.secondary}</p>
             </motion.div>
-            <motion.div className="pt-4" variants={slideUp(20)}>
-              <motion.a 
-                href="#" 
+            <motion.div className="pt-4 flex items-center gap-4" variants={slideUp(20)}>
+              <motion.a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block border-2 border-black px-8 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
                   View Resume
+                </span>`
+              </motion.a>
+              <motion.a
+                href="/resume.pdf"
+                download="Mohamed_Farhat_Resume.pdf"
+                className="inline-block border-2 border-black px-8 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="group-hover:translate-x-1 inline-block transition-transform duration-300">
+                  Download
                 </span>
               </motion.a>
             </motion.div>
