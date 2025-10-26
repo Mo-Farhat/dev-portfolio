@@ -88,3 +88,10 @@ export const slideInX = (
     },
   },
 });
+
+// NOTE: This file lives under Next.js `pages/` so Next treats it as a route file.
+// To satisfy Next's requirement for a default export React component, we export
+// a no-op placeholder component. This keeps the existing named utility exports
+// intact for imports like `import { slideUp } from "./motions"`.
+const MotionsPlaceholder = () => null;
+export default MotionsPlaceholder;
