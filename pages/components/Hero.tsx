@@ -1,69 +1,35 @@
 import React from "react";
 import { motion } from "framer-motion";
 import config from "../index.json";
+import { staggerContainer, slideUp } from "./motions";
 
 const Hero = () => {
   const hero = config.hero;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
-
-  const backgroundVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 2,
-        ease: "easeOut"
-      }
-    }
-  };
 
   return (
     <section className="min-h-screen bg-white flex items-center justify-center relative overflow-hidden">
       <motion.div 
         className="max-w-6xl mx-auto px-8 lg:px-16 text-center"
-        variants={containerVariants}
+        variants={staggerContainer(0.3, 0.2)}
         initial="hidden"
         animate="visible"
       >
         <div className="space-y-8">
           <motion.h1 
             className="text-7xl md:text-8xl lg:text-9xl font-light tracking-tight text-black leading-none"
-            variants={itemVariants}
+            variants={slideUp(30)}
           >
             {hero.name}
           </motion.h1>
           <motion.p 
             className="text-xl md:text-2xl font-light text-gray-600 max-w-2xl mx-auto"
-            variants={itemVariants}
+            variants={slideUp(30)}
           >
             {hero.subtitle}
           </motion.p>
           <motion.div 
             className="pt-8"
-            variants={itemVariants}
+            variants={slideUp(20)}
           >
             <motion.a 
               href="#About" 

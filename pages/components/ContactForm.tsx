@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from '@formspree/react';
 import config from "../index.json";
+import { staggerContainer, slideUp, fadeIn } from "./motions";
 
 function ContactForm() {
   const contact = config.contact;
@@ -14,23 +15,23 @@ function ContactForm() {
       return (
         <motion.div 
           className="text-center py-12"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          variants={fadeIn()}
+          initial="hidden"
+          animate="visible"
         >
           <motion.h3 
             className="text-2xl font-light text-black mb-4"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={slideUp(20)}
+            initial="hidden"
+            animate="visible"
           >
             Thank you!
           </motion.h3>
           <motion.p 
             className="text-gray-600"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            variants={slideUp(20)}
+            initial="hidden"
+            animate="visible"
           >
             Your message has been sent successfully.
           </motion.p>
@@ -38,33 +39,10 @@ function ContactForm() {
       );
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
     <motion.div 
       className="max-w-2xl mx-auto"
-      variants={containerVariants}
+      variants={staggerContainer(0.1, 0.2)}
       initial="hidden"
       animate="visible"
     >
@@ -73,13 +51,13 @@ function ContactForm() {
         action={`https://formspree.io/f/${contact.formId}`}
         method="post" 
         className="space-y-8"
-        variants={itemVariants}
+        variants={slideUp(10)}
       >
         <motion.div 
           className="grid md:grid-cols-2 gap-8"
-          variants={containerVariants}
+          variants={staggerContainer(0.1, 0.2)}
         >
-          <motion.div variants={itemVariants}>
+          <motion.div variants={slideUp(20)}>
             <label className="block text-black font-light mb-3" htmlFor="name">
               Name
             </label>
@@ -96,7 +74,7 @@ function ContactForm() {
               transition={{ duration: 0.2 }}
             />
           </motion.div>
-          <motion.div variants={itemVariants}>
+          <motion.div variants={slideUp(20)}>
             <label className="block text-black font-light mb-3" htmlFor="email">
               Email
             </label>
@@ -114,7 +92,7 @@ function ContactForm() {
             />
           </motion.div>
         </motion.div>
-        <motion.div variants={itemVariants}>
+        <motion.div variants={slideUp(20)}>
           <label className="block text-black font-light mb-3" htmlFor="message">
             Message
           </label>
@@ -138,7 +116,7 @@ function ContactForm() {
         </motion.div>
         <motion.div 
           className="text-center pt-4"
-          variants={itemVariants}
+          variants={slideUp(20)}
         >
           <motion.button 
             type="submit"

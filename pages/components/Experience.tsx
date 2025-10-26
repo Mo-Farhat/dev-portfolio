@@ -1,55 +1,20 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import config from "../index.json";
+import { staggerContainer, slideUp, slideInX, fadeIn, viewportOnce } from "./motions";
 
 const Experience = () => {
   const experience = config.experience;
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
-
-  const titleVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
   
   return (
-    <section id="Experience" className="py-24 bg-white" ref={ref}>
+    <section id="Experience" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-8 lg:px-16">
         <motion.div 
           className="text-center mb-16"
-          variants={titleVariants}
+          variants={fadeIn()}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <h2 className="text-5xl md:text-6xl font-light text-black leading-tight">
             Experience
@@ -58,12 +23,13 @@ const Experience = () => {
         
         <motion.div 
           className="space-y-16"
-          variants={containerVariants}
+          variants={staggerContainer(0.3, 0.2)}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           {experience.map((job, index) => (
-            <motion.div key={index} className="group" variants={itemVariants}>
+            <motion.div key={index} className="group" variants={slideUp(50)}>
               <div className="grid lg:grid-cols-3 gap-8 items-start">
                 <motion.div 
                   className="lg:col-span-1"
@@ -82,18 +48,14 @@ const Experience = () => {
                 
                 <motion.div 
                   className="lg:col-span-2"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  variants={slideInX(20)}
                 >
                   <div className="space-y-6">
                     {job.responsibilities.map((responsibility, respIndex) => (
                       <motion.p 
                         key={respIndex} 
                         className="text-gray-700 leading-relaxed"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                        transition={{ duration: 0.5, delay: (index * 0.2) + (respIndex * 0.1) }}
+                        variants={slideUp(20)}
                       >
                         {responsibility}
                       </motion.p>
@@ -101,9 +63,7 @@ const Experience = () => {
                     
                     <motion.div 
                       className="pt-4"
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
+                      variants={fadeIn()}
                     >
                       <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
                         Technologies Used
@@ -115,9 +75,7 @@ const Experience = () => {
                             className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-black hover:text-white transition-all duration-300"
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                            transition={{ duration: 0.3, delay: (index * 0.2) + (techIndex * 0.05) }}
+                            variants={fadeIn()}
                           >
                             {tech}
                           </motion.span>
@@ -131,9 +89,7 @@ const Experience = () => {
               {index < experience.length - 1 && (
                 <motion.div 
                   className="mt-16 mb-8"
-                  initial={{ scaleX: 0 }}
-                  animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
+                  variants={fadeIn()}
                 >
                   <div className="w-full h-px bg-gray-200"></div>
                 </motion.div>

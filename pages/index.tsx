@@ -6,6 +6,8 @@ import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { motion } from 'framer-motion'
+import { fadeIn } from './components/motions'
 
 export default function Home() {
   return (
@@ -16,7 +18,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-screen">
+      <motion.main
+        className="min-h-screen"
+        variants={fadeIn()}
+        initial="hidden"
+        animate="visible"
+      >
         <Header />
         <Hero />
         <About />
@@ -24,7 +31,7 @@ export default function Home() {
         <Projects />
         <Contact />
         <Footer />
-      </main>
+      </motion.main>
     </>
   )
 }

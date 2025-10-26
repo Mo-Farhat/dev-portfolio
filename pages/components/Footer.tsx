@@ -1,63 +1,28 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import config from "../index.json";
+import { staggerContainer, slideUp, fadeIn, viewportOnce } from "./motions";
 
 const Footer = () => {
   const footer = config.footer;
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const getYear = () => {
     return new Date().getFullYear();
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const iconVariants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <footer className="bg-black text-white py-16" ref={ref}>
+    <footer className="bg-black text-white py-16">
       <div className="max-w-6xl mx-auto px-8 lg:px-16">
         <motion.div 
           className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0"
-          variants={containerVariants}
+          variants={staggerContainer()}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <motion.div 
             className="text-center md:text-left"
-            variants={itemVariants}
+            variants={slideUp(30)}
           >
             <motion.h3 
               className="text-2xl font-light mb-2"
@@ -68,9 +33,7 @@ const Footer = () => {
             </motion.h3>
             <motion.p 
               className="text-gray-400"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              variants={fadeIn()}
             >
               Available for freelance projects
             </motion.p>
@@ -78,7 +41,7 @@ const Footer = () => {
           
           <motion.div 
             className="flex space-x-8"
-            variants={containerVariants}
+            variants={staggerContainer(0.2, 0.1)}
           >
             {footer.linkedin && (
               <motion.a 
@@ -86,7 +49,7 @@ const Footer = () => {
                 target="_blank" 
                 rel="noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
-                variants={iconVariants}
+                variants={fadeIn()}
                 whileHover={{ scale: 1.2, y: -2 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -101,7 +64,7 @@ const Footer = () => {
                 target="_blank" 
                 rel="noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
-                variants={iconVariants}
+                variants={fadeIn()}
                 whileHover={{ scale: 1.2, y: -2 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -115,9 +78,10 @@ const Footer = () => {
         
         <motion.div 
           className="border-t border-gray-800 mt-12 pt-8 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          variants={slideUp(20)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <motion.p 
             className="text-gray-500 text-sm"

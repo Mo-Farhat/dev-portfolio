@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import config from "../index.json";
+import { fadeIn, staggerContainer, slideUp } from "./motions";
 
 const Header = () => {
   const navigation = config.navigation;
@@ -14,47 +15,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const headerVariants = {
-    hidden: { y: -100, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
-
-  const navVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const navItemVariants = {
-    hidden: { y: -20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
       }`}
-      variants={headerVariants}
+      variants={fadeIn()}
       initial="hidden"
       animate="visible"
     >
@@ -69,12 +35,12 @@ const Header = () => {
           </motion.div>
           <motion.ul 
             className="hidden md:flex space-x-12"
-            variants={navVariants}
+            variants={staggerContainer(0.1, 0.3)}
             initial="hidden"
             animate="visible"
           >
-            {navigation.map((item, index) => (
-              <motion.li key={item.title} variants={navItemVariants}>
+            {navigation.map((item) => (
+              <motion.li key={item.title} variants={slideUp(20)}>
                 <motion.a 
                   href={`#${item.title}`}
                   className="text-black font-light hover:text-gray-600 transition-colors duration-300 relative group"
