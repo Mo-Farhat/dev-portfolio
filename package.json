@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d out",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "gh": "^2.8.9",
-    "pages": "^0.0.16"
+    "gh-pages": "^6.0.0"
   }
 }
