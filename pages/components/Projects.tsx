@@ -45,12 +45,12 @@ const Projects = () => {
                 <Image 
                   src={item.image} 
                   alt="project image" 
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" 
+                  className="w-full h-64 object-contain group-hover:scale-102 transition-transform duration-500" 
                   width={400} 
                   height={256}
                 />
                 <motion.div 
-                  className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"
+                  className="absolute inset-0 group-hover:bg-black/20 transition-all duration-500"
                   whileHover={{ backgroundColor: "rgba(0,0,0,0.2)" }}
                 ></motion.div>
               </motion.div>
@@ -79,14 +79,14 @@ const Projects = () => {
                     View Project
                   </motion.a>
                   <motion.a 
-                    href={item.github} 
-                    target="_blank" 
-                    rel="noreferrer"
+                    href={item.private ? (projects.privateRedirect || '/source-private') : item.github} 
+                    target={item.private ? undefined : "_blank"}
+                    rel={item.private ? undefined : "noreferrer"}
                     className="text-gray-600 border-b border-gray-300 hover:border-black hover:text-black transition-all duration-300"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Source Code
+                    {item.private ? 'Why private?' : 'Source Code'}
                   </motion.a>
                 </motion.div>
               </motion.div>
