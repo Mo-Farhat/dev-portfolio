@@ -98,13 +98,21 @@
       },
       
       {
-        "title": "Tomato Vibe",
-        "description": "A web-based educational game designed to enhance math skills through engaging tomato-themed challenges. Features real-time feedback, leaderboard system, and external APIs for random math questions, fostering competition and enhancing user engagement.",
-        "url": "https://github.com/Mo-Farhat/TomatoVibe",
-        "github": "https://github.com/Mo-Farhat/TomatoVibe",
-        "image": "/placeholder-700x350.png",
+        "title": "Subscriptions API",
+        "description": "A backend subscription management API that enables users to create and manage recurring subscriptions, with automated email reminders and secure authentication. The system uses serverless background workflows to handle scheduled notifications and includes built in protection against abuse through rate limiting and bot detection.",
+        "url": "https://github.com/Mo-Farhat/subscriptions-api",
+        "github": "https://github.com/Mo-Farhat/subscriptions-api",
+        "image": "/backend-icon.svg",
         "private": false
-      }
+      },
+      {
+        "title": "Strive Academics",
+        "description": "A web based tutoring platform designed to connect students with tutors, manage lesson bookings, payments, and recurring sessions, and provide administrative tools for overseeing tutoring operations.",
+        "url": "https://striveacademics.com.au/",                                                                                                                                                                                                     
+        "github": "https://github.com/Mo-Farhat/Strive-Academics",
+        "image": "/strive-logo.png",
+        "private": true
+      }                                         
     ]
   },
   "contact": {

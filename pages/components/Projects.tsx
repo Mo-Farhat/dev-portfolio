@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import config from "../index.json";
 import Image from "next/image";
 import { staggerContainer, slideUp, fadeIn, viewportOnce } from "./motions";
@@ -40,11 +40,14 @@ const Projects = () => {
 };
 
 const ProjectCard = ({ item, index, projectsConfig }: { item: any, index: number, projectsConfig: any }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <motion.div 
-      className="group bg-white overflow-hidden hover:shadow-2xl transition-all duration-700 hover-trigger"
+      className="group bg-white overflow-hidden hover:shadow-2xl transition-all duration-700"
       variants={slideUp(50)}
       whileHover={{ y: -15 }}
+      layout
     >
       <div className="relative overflow-hidden aspect-[4/3] bg-gray-100 p-8 flex items-center justify-center">
         <motion.div
@@ -69,7 +72,7 @@ const ProjectCard = ({ item, index, projectsConfig }: { item: any, index: number
             href={item.url} 
             target="_blank" 
             rel="noreferrer"
-            className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 hover-trigger"
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 group/link"
             title="View Project"
           >
             <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +83,7 @@ const ProjectCard = ({ item, index, projectsConfig }: { item: any, index: number
             href={item.private ? (projectsConfig.privateRedirect || '/source-private') : item.github} 
             target={item.private ? undefined : "_blank"}
             rel={item.private ? undefined : "noreferrer"}
-            className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 hover-trigger"
+            className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 group/link"
             title="Source Code"
           >
             <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,10 +100,37 @@ const ProjectCard = ({ item, index, projectsConfig }: { item: any, index: number
           </h3>
           <span className="text-xs font-mono text-gray-400">0{index + 1}</span>
         </div>
-        <p className="text-gray-600 mb-6 leading-relaxed text-sm line-clamp-3">
-          {item.description}
-        </p>
-        <div className="w-full h-px bg-gray-100 group-hover:bg-black transition-colors duration-500 origin-left group-hover:scale-x-100 scale-x-50" />
+        
+        <div className="relative">
+          <motion.div
+            initial={false}
+            animate={{ height: isExpanded ? "auto" : "4.5em" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <p className="text-gray-600 leading-relaxed text-sm">
+              {item.description}
+            </p>
+          </motion.div>
+          
+          <button 
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mt-2 text-xs font-medium uppercase tracking-wider text-black hover:text-gray-600 transition-colors flex items-center gap-1"
+          >
+            {isExpanded ? 'Read Less' : 'Read More'}
+            <motion.svg 
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              className="w-3 h-3" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </motion.svg>
+          </button>
+        </div>
+
+        <div className="w-full h-px bg-gray-100 group-hover:bg-black transition-colors duration-500 origin-left group-hover:scale-x-100 scale-x-50 mt-6" />
       </div>
     </motion.div>
   );
