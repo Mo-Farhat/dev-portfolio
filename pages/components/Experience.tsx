@@ -72,7 +72,7 @@ const Experience = () => {
                         {job.technologies.map((tech, techIndex) => (
                           <motion.span 
                             key={techIndex}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-black hover:text-white transition-all duration-300"
+                            className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-black hover:text-white transition-all duration-300 hover-trigger"
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
                             variants={fadeIn()}

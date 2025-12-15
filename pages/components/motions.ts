@@ -89,6 +89,40 @@ export const slideInX = (
   },
 });
 
+export const textReveal = {
+  hidden: { y: "100%" },
+  visible: { 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
+export const containerReveal = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.1
+    }
+  }
+};
+
+export const parallaxY = (distance: number): Variants => ({
+  initial: { y: 0 },
+  animate: { 
+    y: distance,
+    transition: {
+      type: "spring",
+      stiffness: 50,
+      damping: 20
+    }
+  }
+});
+
 // NOTE: This file lives under Next.js `pages/` so Next treats it as a route file.
 // To satisfy Next's requirement for a default export React component, we export
 // a no-op placeholder component. This keeps the existing named utility exports

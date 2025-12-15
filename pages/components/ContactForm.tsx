@@ -121,7 +121,7 @@ function ContactForm() {
           <motion.button 
             type="submit"
             disabled={state.submitting}
-            className="inline-block border-2 border-black px-12 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-block border-2 border-black px-12 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed hover-trigger"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

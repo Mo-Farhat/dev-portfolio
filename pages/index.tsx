@@ -6,6 +6,8 @@ import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import PageLoader from './components/PageLoader'
+import ScrollProgress from './components/ScrollProgress'
 import { motion } from 'framer-motion'
 import { fadeIn } from './components/motions'
 
@@ -18,6 +20,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
+      <PageLoader />
+      <ScrollProgress />
+      
       <motion.main
         className="min-h-screen"
         variants={fadeIn()}

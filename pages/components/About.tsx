@@ -36,7 +36,7 @@ const About = () => {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block border-2 border-black px-8 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group"
+                className="inline-block border-2 border-black px-8 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group hover-trigger"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -47,7 +47,7 @@ const About = () => {
               <motion.a
                 href="/resume.pdf"
                 download="Mohamed_Farhat_Resume.pdf"
-                className="inline-block border-2 border-black px-8 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group"
+                className="inline-block border-2 border-black px-8 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-300 group hover-trigger"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

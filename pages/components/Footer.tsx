@@ -48,7 +48,7 @@ const Footer = () => {
                 href={footer.linkedin} 
                 target="_blank" 
                 rel="noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
+                className="text-gray-400 hover:text-white transition-colors duration-300 hover-trigger"
                 variants={fadeIn()}
                 whileHover={{ scale: 1.2, y: -2 }}
                 whileTap={{ scale: 0.9 }}
@@ -63,7 +63,7 @@ const Footer = () => {
                 href={footer.github} 
                 target="_blank" 
                 rel="noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
+                className="text-gray-400 hover:text-white transition-colors duration-300 hover-trigger"
                 variants={fadeIn()}
                 whileHover={{ scale: 1.2, y: -2 }}
                 whileTap={{ scale: 0.9 }}
